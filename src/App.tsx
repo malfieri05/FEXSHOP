@@ -49,8 +49,8 @@ function SchedulePage() {
   return (
     <section className="py-8 min-h-[60vh] flex flex-col justify-start bg-gradient-to-l from-blue-100/70 via-white/80 to-blue-200/60" data-aos="fade-up">
       <div className="w-full px-0 text-center">
-        <h2 className="text-3xl font-extrabold mb-0 text-blue-700">Schedule a Call</h2>
-        <p className="text-lg text-gray-700 mb-0">Schedule a call or video meeting to discuss your needs.</p>
+        <h2 className="text-3xl font-extrabold mb-0 text-blue-700">Contact an Agent</h2>
+        <p className="text-lg text-gray-700 mb-0">Contact an agent to discuss your needs.</p>
         <div 
           className="calendly-inline-widget mx-auto" 
           data-url="https://calendly.com/mikealfieri/30min"
@@ -63,7 +63,7 @@ function SchedulePage() {
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
-  { to: '/schedule', label: 'Schedule a Call' },
+  { to: '/schedule', label: 'Contact an Agent' },
 ];
 
 function App() {
@@ -98,7 +98,7 @@ function App() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col w-full">
               {/* Main Nav Row */}
-              <div className="flex justify-between h-20 items-center w-full">
+              <div className="flex justify-between h-14 items-center w-full">
                 <Link to="/" className="text-2xl font-extrabold text-blue-700 tracking-tight hover:text-blue-900 transition flex items-center gap-2" style={{ textDecoration: 'none' }}>
                   FEX Pro
                   {/* Sleek insurance logo: shield with checkmark */}
@@ -223,4 +223,4 @@ function App() {
   );
 }
 
-export default App 
+export default App;

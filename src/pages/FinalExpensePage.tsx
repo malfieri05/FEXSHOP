@@ -122,7 +122,38 @@ const FinalExpensePage: React.FC = () => {
       {/* Page Header - now above the card */}
       <div className="w-full flex flex-col items-center justify-center mb-8 mt-2">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg text-center">Final Expense Plans</h1>
-        <p className="text-lg md:text-xl text-gray-700 font-medium text-center max-w-2xl">Affordable, easy-to-get coverage to protect your loved ones from funeral costs and final expenses.</p>
+        <p className="text-lg md:text-xl text-gray-700 font-medium text-center max-w-2xl">Complete protection. Made simple.</p>
+      </div>
+      <div className="w-full max-w-4xl mx-auto mt-2 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Step 1 */}
+        <div className="relative flex flex-col items-center flex-1 transition-transform duration-200 hover:-translate-y-2 hover:shadow-2xl cursor-pointer group will-change-transform rounded-2xl m-1 p-5">
+          <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-2xl bg-white/80 pointer-events-none"></div>
+          <div className="relative z-10 flex flex-col items-center w-full">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg mb-2">1</div>
+            <div className="text-lg font-semibold text-blue-900">Get Your Quote</div>
+            <div className="text-sm text-gray-500 text-center mt-1">Input your info and see your rate instantly.</div>
+          </div>
+        </div>
+        <div className="hidden md:block text-3xl text-blue-300 mx-2">→</div>
+        {/* Step 2 */}
+        <div className="relative flex flex-col items-center flex-1 transition-transform duration-200 hover:-translate-y-2 hover:shadow-2xl cursor-pointer group will-change-transform rounded-2xl m-1 p-5">
+          <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-2xl bg-white/80 pointer-events-none"></div>
+          <div className="relative z-10 flex flex-col items-center w-full">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-teal-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg mb-2">2</div>
+            <div className="text-lg font-semibold text-blue-900">Connect with Agent</div>
+            <div className="text-sm text-gray-500 text-center mt-1">Lock in your rate with a licensed expert.</div>
+          </div>
+        </div>
+        <div className="hidden md:block text-3xl text-blue-300 mx-2">→</div>
+        {/* Step 3 */}
+        <div className="relative flex flex-col items-center flex-1 transition-transform duration-200 hover:-translate-y-2 hover:shadow-2xl cursor-pointer group will-change-transform rounded-2xl m-1 p-5">
+          <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-2xl bg-white/80 pointer-events-none"></div>
+          <div className="relative z-10 flex flex-col items-center w-full">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-indigo-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg mb-2">3</div>
+            <div className="text-lg font-semibold text-blue-900">Peace of Mind</div>
+            <div className="text-sm text-gray-500 text-center mt-1">Rest easy knowing your family is protected.</div>
+          </div>
+        </div>
       </div>
       {/* Main Card - much wider, now floats below header */}
       <div className="relative z-10 w-full max-w-6xl rounded-3xl shadow-2xl bg-white/80 backdrop-blur-lg border border-blue-100 p-8 md:p-12 flex flex-col items-center">

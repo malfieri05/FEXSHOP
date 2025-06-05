@@ -58,11 +58,58 @@ const FinalExpensePage: React.FC = () => {
     setBurialType(e.target.value);
   };
 
-  // Handle form submission (placeholder)
-  const handleSubmit = (e: React.FormEvent) => {
+  // Handle form submission
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement submission logic (API call, show confirmation, etc.)
-    alert("Thank you! We'll be in touch with your personalized quote.");
+    setIsSubmitting(true);
+    setSubmitError(false);
+    setSubmitSuccess(false);
+
+    try {
+      const response = await fetch('https://formspree.io/f/myzjzjpd', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          age: form.age,
+          state: form.state,
+          coverage: form.coverage,
+          health: form.health,
+          email: form.email,
+          burialType,
+          healthTier,
+          healthAnswers: {
+            q1, q2, q3, q4, q5
+          }
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitSuccess(true);
+        // Reset form
+        setForm({ name: "", age: "", state: "", coverage: "", health: "", email: "" });
+        setSelectedState("");
+        setBurialType("");
+        setHealthTier('select1');
+        setQ1(null);
+        setQ2(null);
+        setQ3(null);
+        setQ4(null);
+        setQ5(null);
+      } else {
+        setSubmitError(true);
+      }
+    } catch (error) {
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Get average cost for selected state and type
@@ -124,7 +171,7 @@ const FinalExpensePage: React.FC = () => {
         <h1 className="text-4xl md:text-5xl font-extrabold mb-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg text-center">Final Expense Plans</h1>
         <p className="text-lg md:text-xl text-gray-700 font-medium text-center max-w-2xl">Complete protection. Made simple.</p>
       </div>
-      <div className="w-full max-w-4xl mx-auto mt-2 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="w-full max-w-4xl mx-auto mt-2 mb-8 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-6">
         {/* Step 1 */}
         <div className="relative flex flex-col items-center flex-1 transition-transform duration-200 hover:-translate-y-2 hover:shadow-2xl cursor-pointer group will-change-transform rounded-2xl m-1 p-5">
           <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-2xl bg-white/80 pointer-events-none"></div>
@@ -156,7 +203,7 @@ const FinalExpensePage: React.FC = () => {
         </div>
       </div>
       {/* Main Card - much wider, now floats below header */}
-      <div className="relative z-10 w-full max-w-6xl rounded-3xl shadow-2xl bg-white/80 backdrop-blur-lg border border-blue-100 p-8 md:p-12 flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-6xl rounded-3xl shadow-2xl bg-white/80 backdrop-blur-lg border border-blue-100 p-4 sm:p-6 md:p-12 flex flex-col items-center">
         {/* State and Burial/Cremation Selection Row */}
         <form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-4 w-full justify-center items-center">
@@ -165,7 +212,7 @@ const FinalExpensePage: React.FC = () => {
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6v6l4 2"/></svg>
               </span>
               <select
-                className="pl-10 pr-3 py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-lg shadow-sm"
+                className="pl-10 pr-3 py-2 sm:py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-base sm:text-lg shadow-sm"
                 value={selectedState}
                 onChange={handleStateChange}
                 required
@@ -181,7 +228,7 @@ const FinalExpensePage: React.FC = () => {
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
               </span>
               <select
-                className="pl-10 pr-3 py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-lg shadow-sm"
+                className="pl-10 pr-3 py-2 sm:py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-base sm:text-lg shadow-sm"
                 value={burialType}
                 onChange={handleBurialTypeChange}
                 required
@@ -192,7 +239,7 @@ const FinalExpensePage: React.FC = () => {
               </select>
             </div>
           </div>
-          <div className={`rounded-xl px-6 py-4 font-semibold shadow text-center w-full mt-2 transition-colors duration-300 ${selectedState && burialType ? 'bg-red-100 text-red-900' : 'bg-green-100 text-green-900'}`}>
+          <div className={`rounded-xl px-4 sm:px-6 py-3 sm:py-4 font-semibold shadow text-center w-full mt-2 transition-colors duration-300 ${selectedState && burialType ? 'bg-red-100 text-red-900' : 'bg-green-100 text-green-900'}`}>
             <span>
               {costBoxText}
               {costRange && <sup className="ml-1 text-xs align-super">*</sup>}
@@ -234,14 +281,14 @@ const FinalExpensePage: React.FC = () => {
           {/* Health Questionnaire */}
           {selectedState && burialType && (
             <>
-              <div className="w-full bg-white/90 rounded-2xl shadow-lg p-2 flex flex-col gap-2 border border-blue-100 mt-2">
+              <div className="w-full bg-white/90 rounded-2xl shadow-lg p-2 sm:p-4 flex flex-col gap-2 border border-blue-100 mt-2">
                 <h2 className="text-2xl font-extrabold text-blue-700 flex items-center gap-2">
                   <span role="img" aria-label="stethoscope">🩺</span> Quick Health Questionnaire
                 </h2>
                 <p className="text-gray-700 mt-0">  Answer these questions to help us find the best plan for you. Your answers are private and only used to match you to the right coverage.</p>
                 <div className="space-y-2">
                   {/* Q1 (tobacco) */}
-                  <div className="p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
+                  <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
                     <div className="font-bold text-lg text-blue-800">
                       1. Have you used tobacco in the past 12 months?
                     </div>
@@ -257,7 +304,7 @@ const FinalExpensePage: React.FC = () => {
                     </div>
                   </div>
                   {/* Q2 (oxygen/wheelchair/nursing home) */}
-                  <div className="p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
+                  <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
                     <div className="font-bold text-lg text-blue-800">
                       2. Do you currently use oxygen, a wheelchair, or reside in a nursing home?
                     </div>
@@ -273,7 +320,7 @@ const FinalExpensePage: React.FC = () => {
                     </div>
                   </div>
                   {/* Q3 (hospitalized overnight) */}
-                  <div className="p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
+                  <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
                     <div className="font-bold text-lg text-blue-800">
                       3. In the past 2 years, have you been hospitalized overnight for any reason?
                     </div>
@@ -289,7 +336,7 @@ const FinalExpensePage: React.FC = () => {
                     </div>
                   </div>
                   {/* Q4 (well controlled conditions) */}
-                  <div className="p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
+                  <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
                     <div className="font-bold text-lg text-blue-800">
                       4. Do you have any of the following conditions, but they are well controlled (e.g., with medication): high blood pressure, high cholesterol, type 2 diabetes (non-insulin)?
                     </div>
@@ -305,7 +352,7 @@ const FinalExpensePage: React.FC = () => {
                     </div>
                   </div>
                   {/* Q5 (diagnosed/treated for serious conditions) */}
-                  <div className="p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
+                  <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
                     <div className="font-bold text-lg text-blue-800">
                       5. In the past 2 years, have you been diagnosed with, treated for, or advised to have treatment for any of the following: cancer (other than basal cell skin cancer), heart attack, stroke, congestive heart failure, COPD/emphysema, kidney failure, HIV/AIDS?
                     </div>
@@ -330,8 +377,8 @@ const FinalExpensePage: React.FC = () => {
                 </div>
               </div>
               {/* --- SLIDER SECTION: Now below the questionnaire --- */}
-              <div className="w-full bg-white rounded-2xl shadow-lg p-8 mb-8 flex flex-col md:flex-row gap-8 items-center justify-between border border-blue-100 mt-6">
-                <div className="flex flex-col gap-4 w-full md:w-2/3">
+              <div className="w-full bg-white rounded-2xl shadow-lg p-4 sm:p-8 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 items-center justify-between border border-blue-100 mt-6">
+                <div className="flex flex-col gap-3 sm:gap-4 w-full md:w-2/3">
                   <div className="flex gap-6 items-center">
                     <label className="font-semibold text-blue-700">Gender:</label>
                     <label className="inline-flex items-center gap-1">
@@ -386,7 +433,7 @@ const FinalExpensePage: React.FC = () => {
                     </label>
                   </div>
                 </div>
-                <div className="flex flex-col items-center justify-center w-full md:w-1/3">
+                <div className="flex flex-col items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
                   <div
                     className="bg-blue-600 text-white rounded-2xl px-10 py-6 shadow-xl text-center text-3xl font-extrabold tracking-tight min-h-[64px] flex flex-col items-center justify-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
                     onClick={() => window.location.href = 'tel:5037645097'}
@@ -411,7 +458,7 @@ const FinalExpensePage: React.FC = () => {
                   {selectedState && burialType && quote && (
                     <button
                       type="button"
-                      className="mt-6 bg-blue-50 border border-gray-200 text-gray-800 px-3 py-1.5 rounded-md font-semibold text-sm shadow-sm hover:bg-blue-100 transition"
+                      className="mt-4 sm:mt-6 bg-blue-50 border border-gray-200 text-gray-800 px-3 py-1.5 rounded-md font-semibold text-sm shadow-sm hover:bg-blue-100 transition w-full sm:w-auto"
                       style={{ width: 'auto', minWidth: 'unset', fontSize: '0.95rem', padding: '0.4rem 1rem' }}
                       onClick={() => setShowShareModal(true)}
                     >
@@ -422,37 +469,65 @@ const FinalExpensePage: React.FC = () => {
               </div>
             </>
           )}
+          {/* Form Notifications */}
+          {submitSuccess && (
+            <div className="w-full bg-green-50 border border-green-200 rounded-xl p-4 mb-4">
+              <div className="flex items-center gap-2">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <p className="text-green-700 font-medium">Thank you! We'll be in touch with your personalized quote soon.</p>
+              </div>
+            </div>
+          )}
+          {submitError && (
+            <div className="w-full bg-red-50 border border-red-200 rounded-xl p-4 mb-4">
+              <div className="flex items-center gap-2">
+                <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-red-700 font-medium">Sorry, there was an error submitting your form. Please try again.</p>
+              </div>
+            </div>
+          )}
         </form>
       </div>
       {showShareModal && ReactDOM.createPortal(
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full relative flex flex-col gap-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 px-2 sm:px-0">
+          <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-8 max-w-md w-full relative flex flex-col gap-6">
             <button className="absolute top-4 right-4 text-gray-400 hover:text-blue-700 text-2xl" onClick={() => { setShowShareModal(false); setShareSuccess(false); setShareEmail(""); setSharePhone(""); }}>&times;</button>
             {!shareSuccess ? (
               <>
-                <h2 className="text-2xl font-extrabold text-blue-700 mb-2">Send Your Quote</h2>
-                <p className="text-gray-700 mb-2">Enter your email and/or phone number to receive your personalized quote.</p>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-blue-700 mb-2">Send Your Quote</h2>
+                <p className="text-gray-700 mb-2 text-sm sm:text-base">Enter your email to receive your personalized quote.</p>
                 <form
                   className="flex flex-col gap-4"
                   onSubmit={async e => {
                     e.preventDefault();
-                    const res = await fetch('/api/send-quote', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({
-                        email: shareEmail,
-                        phone: sharePhone,
-                        quote,
-                        state: selectedState,
-                        burialType,
-                        gender: quoteGender,
-                        age: quoteAge,
-                        coverage: quoteCoverage,
-                        healthTier,
-                      }),
-                    });
-                    if (res.ok) setShareSuccess(true);
-                    else alert('Failed to send quote');
+                    try {
+                      const response = await fetch('/api/send-quote', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          email: shareEmail,
+                          quote,
+                          state: selectedState,
+                          burialType,
+                          gender: quoteGender,
+                          age: quoteAge,
+                          coverage: quoteCoverage,
+                          healthTier,
+                          name: form.name,
+                        }),
+                      });
+                      if (response.ok) {
+                        setShareSuccess(true);
+                      } else {
+                        alert('Failed to send quote. Please try again.');
+                      }
+                    } catch (error) {
+                      alert('Failed to send quote. Please try again.');
+                    }
                   }}
                 >
                   <input
@@ -463,16 +538,9 @@ const FinalExpensePage: React.FC = () => {
                     onChange={e => setShareEmail(e.target.value)}
                     required
                   />
-                  <input
-                    className="p-3 rounded border border-blue-200 focus:ring-2 focus:ring-blue-400"
-                    type="tel"
-                    placeholder="Phone"
-                    value={sharePhone}
-                    onChange={e => setSharePhone(e.target.value)}
-                  />
                   <button
                     type="submit"
-                    className="w-full bg-blue-700 text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-800 transition mt-2"
+                    className="w-full bg-blue-700 text-white py-2 sm:py-3 rounded-lg font-bold text-base sm:text-lg hover:bg-blue-800 transition mt-2"
                   >
                     Send My Quote
                   </button>
@@ -480,9 +548,13 @@ const FinalExpensePage: React.FC = () => {
               </>
             ) : (
               <div className="flex flex-col items-center gap-4">
-                <h2 className="text-2xl font-extrabold text-blue-700">Quote Sent!</h2>
-                <p className="text-gray-700 text-center">Check your email and/or phone for your personalized quote. We'll be in touch soon!</p>
-                <button className="mt-2 px-6 py-2 rounded-lg bg-blue-700 text-white font-bold hover:bg-blue-800" onClick={() => { setShowShareModal(false); setShareSuccess(false); setShareEmail(""); setSharePhone(""); }}>Close</button>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-blue-700">Quote Sent!</h2>
+                <p className="text-gray-700 text-center text-sm sm:text-base">Check your email for your personalized quote.</p>
+                <div className="text-center">
+                  <span className="block text-base font-bold text-black">(Check your Spam Folder)</span>
+                </div>
+                <p className="text-gray-700 text-center text-sm sm:text-base">Contact an agent to secure your rate!</p>
+                <button className="mt-2 px-4 sm:px-6 py-2 rounded-lg bg-blue-700 text-white font-bold hover:bg-blue-800 text-base sm:text-lg" onClick={() => { setShowShareModal(false); setShareSuccess(false); setShareEmail(""); setSharePhone(""); }}>Close</button>
               </div>
             )}
           </div>

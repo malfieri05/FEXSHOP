@@ -95,10 +95,10 @@ function App() {
         </a>
         {/* Navigation */}
         <nav className="bg-white shadow-md sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
             <div className="flex flex-col w-full">
               {/* Main Nav Row */}
-              <div className="flex justify-between h-14 items-center w-full">
+              <div className="flex justify-between h-14 items-center w-full px-0 sm:px-2">
                 <Link to="/" className="text-2xl font-extrabold text-blue-700 tracking-tight hover:text-blue-900 transition flex items-center gap-2" style={{ textDecoration: 'none' }}>
                   FEX Pro
                   {/* Sleek insurance logo: shield with checkmark */}
@@ -182,35 +182,35 @@ function App() {
           <Route path="/final-expense" element={<FinalExpensePage />} />
         </Routes>
         {/* Professional Footer */}
-        <footer className="bg-black text-gray-200 border-t border-gray-800 pt-12 pb-8 mt-0">
-          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center md:items-start gap-12 md:gap-0">
+        <footer className="bg-black text-gray-200 border-t border-gray-800 pt-8 sm:pt-12 pb-6 sm:pb-8 mt-0">
+          <div className="max-w-7xl mx-auto px-2 sm:px-6 flex flex-col md:flex-row justify-between items-center md:items-start gap-8 sm:gap-12 md:gap-0">
             {/* Brand & Tagline */}
-            <div className="flex-1 text-center md:text-left mb-8 md:mb-0">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                <span className="text-3xl font-extrabold text-blue-400 tracking-tight">FEX Pro</span>
-                <span className="inline-block bg-blue-700 text-white text-xs px-3 py-1 rounded-full font-semibold ml-2">Licensed & Insured</span>
+            <div className="flex-1 text-center md:text-left mb-6 sm:mb-8 md:mb-0">
+              <div className="flex items-center justify-center md:justify-start gap-2 sm:gap-3 mb-2">
+                <span className="text-2xl sm:text-3xl font-extrabold text-blue-400 tracking-tight">FEX Pro</span>
+                <span className="inline-block bg-blue-700 text-white text-xs px-2 sm:px-3 py-1 rounded-full font-semibold ml-2">Licensed & Insured</span>
               </div>
-              <div className="text-lg text-gray-400 font-medium">Your trusted insurance partner</div>
+              <div className="text-base sm:text-lg text-gray-400 font-medium">Your trusted protection partner</div>
             </div>
             {/* Contact Info */}
-            <div className="flex-1 text-center md:text-left mb-8 md:mb-0">
-              <h4 className="text-xl font-bold text-white mb-2">Contact Info</h4>
-              <div className="text-gray-300 text-base font-medium">Email: <a href="mailto:michaelalfieri.ffl@gmail.com" className="hover:text-blue-400 transition">michaelalfieri.ffl@gmail.com</a></div>
-              <div className="text-gray-300 text-base font-medium">Phone: <a href="tel:5037645097" className="hover:text-blue-400 transition">(503) 764-5097</a></div>
+            <div className="flex-1 text-center md:text-left mb-6 sm:mb-8 md:mb-0">
+              <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Contact Info</h4>
+              <div className="text-gray-300 text-sm sm:text-base font-medium">Email: <a href="mailto:michaelalfieri.ffl@gmail.com" className="hover:text-blue-400 transition">michaelalfieri.ffl@gmail.com</a></div>
+              <div className="text-gray-300 text-sm sm:text-base font-medium">Phone: <a href="tel:5037645097" className="hover:text-blue-400 transition">(503) 764-5097</a></div>
             </div>
             {/* Small Headshot & Name at Bottom */}
             <div className="flex-1 text-center md:text-right flex flex-col items-center md:items-end">
-              <div className="flex items-center gap-3 mb-2">
-                <img src={headshot} alt="Michael V. Alfieri" className="w-16 h-16 rounded-full border-2 border-white shadow object-cover object-center" style={{ objectPosition: 'center 30%' }} />
+              <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                <img src={headshot} alt="Michael V. Alfieri" className="w-12 sm:w-16 h-12 sm:h-16 rounded-full border-2 border-white shadow object-cover object-center" style={{ objectPosition: 'center 30%' }} />
                 <div className="flex flex-col items-start">
-                  <div className="text-sm text-gray-300 font-semibold">Michael V. Alfieri</div>
-                  <div className="text-xs text-gray-400">Licensed Insurance Agent</div>
+                  <div className="text-xs sm:text-sm text-gray-300 font-semibold">Michael V. Alfieri</div>
+                  <div className="text-xs text-gray-400">Licensed Agent</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 mb-4">
-                <h4 className="text-xl font-bold text-white mb-0">Connect</h4>
+              <div className="flex items-center gap-2 sm:gap-3 mb-4">
+                <h4 className="text-lg sm:text-xl font-bold text-white mb-0">Connect</h4>
                 <a href="#" className="text-gray-400 hover:text-blue-400 transition ml-2" aria-label="LinkedIn">
-                  <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
+                  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
                 </a>
               </div>
               <div className="text-xs text-gray-500 mb-2">&copy; {new Date().getFullYear()} FEX Pro. All rights reserved.</div>

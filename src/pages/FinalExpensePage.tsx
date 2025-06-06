@@ -208,11 +208,11 @@ const FinalExpensePage: React.FC = () => {
         <form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-4 w-full justify-center items-center">
             <div className="relative w-full md:w-1/2">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 pointer-events-none z-10">
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6v6l4 2"/></svg>
               </span>
               <select
-                className="pl-10 pr-3 py-2 sm:py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-base sm:text-lg shadow-sm"
+                className="pl-12 pr-3 py-2 sm:py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-base sm:text-lg shadow-sm"
                 value={selectedState}
                 onChange={handleStateChange}
                 required
@@ -224,11 +224,11 @@ const FinalExpensePage: React.FC = () => {
               </select>
             </div>
             <div className="relative w-full md:w-1/2">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 pointer-events-none z-10">
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
               </span>
               <select
-                className="pl-10 pr-3 py-2 sm:py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-base sm:text-lg shadow-sm"
+                className="pl-12 pr-3 py-2 sm:py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-base sm:text-lg shadow-sm"
                 value={burialType}
                 onChange={handleBurialTypeChange}
                 required
@@ -411,7 +411,7 @@ const FinalExpensePage: React.FC = () => {
                         onChange={e => setQuoteAge(Number(e.target.value))}
                         className="w-full sm:w-48 accent-blue-700"
                       />
-                      <span className="font-bold text-lg text-blue-900 w-10 text-center">{quoteAge}</span>
+                      <span className="font-bold text-base sm:text-lg text-blue-900 w-12 text-center min-w-0 truncate">{quoteAge}</span>
                     </div>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
@@ -427,12 +427,12 @@ const FinalExpensePage: React.FC = () => {
                         onChange={e => setQuoteCoverage(Number(e.target.value))}
                         className="w-full sm:w-48 accent-blue-700"
                       />
-                      <span className="font-bold text-lg text-blue-900 w-24 text-center">${quoteCoverage.toLocaleString()}</span>
+                      <span className="font-bold text-base sm:text-lg text-blue-900 w-24 text-center min-w-0 truncate">${quoteCoverage.toLocaleString()}</span>
                     </div>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
                     <label className="font-semibold text-blue-700 whitespace-nowrap">Health Tier:</label>
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-row flex-wrap gap-2 sm:gap-4 w-full sm:w-auto">
                       <label className="inline-flex items-center gap-1">
                         <input type="radio" name="tier" value="select1" checked={healthTier === 'select1'} onChange={() => setHealthTier('select1')} className="accent-blue-700" />
                         Select 1

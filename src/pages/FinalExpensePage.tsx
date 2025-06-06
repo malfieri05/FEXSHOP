@@ -386,63 +386,71 @@ const FinalExpensePage: React.FC = () => {
               {/* --- SLIDER SECTION: Now below the questionnaire --- */} 
               <div className="w-full bg-white rounded-2xl shadow-lg p-4 sm:p-8 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 items-center justify-between border border-blue-100 mt-6">
                 <div className="flex flex-col gap-3 sm:gap-4 w-full md:w-2/3">
-                  <div className="flex gap-6 items-center">
-                    <label className="font-semibold text-blue-700">Gender:</label>
-                    <label className="inline-flex items-center gap-1">
-                      <input type="radio" name="gender" value="male" checked={quoteGender === 'male'} onChange={() => setQuoteGender('male')} className="accent-blue-700" />
-                      Male
-                    </label>
-                    <label className="inline-flex items-center gap-1">
-                      <input type="radio" name="gender" value="female" checked={quoteGender === 'female'} onChange={() => setQuoteGender('female')} className="accent-pink-600" />
-                      Female
-                    </label>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
+                    <label className="font-semibold text-blue-700 whitespace-nowrap">Gender:</label>
+                    <div className="flex gap-4">
+                      <label className="inline-flex items-center gap-1">
+                        <input type="radio" name="gender" value="male" checked={quoteGender === 'male'} onChange={() => setQuoteGender('male')} className="accent-blue-700" />
+                        Male
+                      </label>
+                      <label className="inline-flex items-center gap-1">
+                        <input type="radio" name="gender" value="female" checked={quoteGender === 'female'} onChange={() => setQuoteGender('female')} className="accent-pink-600" />
+                        Female
+                      </label>
+                    </div>
                   </div>
-                  <div className="flex gap-6 items-center">
-                    <label className="font-semibold text-blue-700" htmlFor="age-slider">Age:</label>
-                    <input
-                      id="age-slider"
-                      type="range"
-                      min={60}
-                      max={80}
-                      value={quoteAge}
-                      onChange={e => setQuoteAge(Number(e.target.value))}
-                      className="w-48 accent-blue-700"
-                    />
-                    <span className="font-bold text-lg text-blue-900 w-10 text-center">{quoteAge}</span>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
+                    <label className="font-semibold text-blue-700 whitespace-nowrap" htmlFor="age-slider">Age:</label>
+                    <div className="flex items-center gap-4 w-full sm:w-auto">
+                      <input
+                        id="age-slider"
+                        type="range"
+                        min={60}
+                        max={80}
+                        value={quoteAge}
+                        onChange={e => setQuoteAge(Number(e.target.value))}
+                        className="w-full sm:w-48 accent-blue-700"
+                      />
+                      <span className="font-bold text-lg text-blue-900 w-10 text-center">{quoteAge}</span>
+                    </div>
                   </div>
-                  <div className="flex gap-6 items-center">
-                    <label className="font-semibold text-blue-700" htmlFor="coverage-slider">Coverage:</label>
-                    <input
-                      id="coverage-slider"
-                      type="range"
-                      min={5000}
-                      max={20000}
-                      step={1000}
-                      value={quoteCoverage}
-                      onChange={e => setQuoteCoverage(Number(e.target.value))}
-                      className="w-48 accent-blue-700"
-                    />
-                    <span className="font-bold text-lg text-blue-900 w-20 text-center">${quoteCoverage.toLocaleString()}</span>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
+                    <label className="font-semibold text-blue-700 whitespace-nowrap" htmlFor="coverage-slider">Coverage:</label>
+                    <div className="flex items-center gap-4 w-full sm:w-auto">
+                      <input
+                        id="coverage-slider"
+                        type="range"
+                        min={5000}
+                        max={20000}
+                        step={1000}
+                        value={quoteCoverage}
+                        onChange={e => setQuoteCoverage(Number(e.target.value))}
+                        className="w-full sm:w-48 accent-blue-700"
+                      />
+                      <span className="font-bold text-lg text-blue-900 w-24 text-center">${quoteCoverage.toLocaleString()}</span>
+                    </div>
                   </div>
-                  <div className="flex gap-6 items-center">
-                    <label className="font-semibold text-blue-700">Health Tier:</label>
-                    <label className="inline-flex items-center gap-1">
-                      <input type="radio" name="tier" value="select1" checked={healthTier === 'select1'} onChange={() => setHealthTier('select1')} className="accent-blue-700" />
-                      Select 1
-                    </label>
-                    <label className="inline-flex items-center gap-1">
-                      <input type="radio" name="tier" value="select2" checked={healthTier === 'select2'} onChange={() => setHealthTier('select2')} className="accent-green-600" />
-                      Select 2
-                    </label>
-                    <label className="inline-flex items-center gap-1">
-                      <input type="radio" name="tier" value="select3" checked={healthTier === 'select3'} onChange={() => setHealthTier('select3')} className="accent-yellow-600" />
-                      Select 3
-                    </label>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
+                    <label className="font-semibold text-blue-700 whitespace-nowrap">Health Tier:</label>
+                    <div className="flex flex-wrap gap-4">
+                      <label className="inline-flex items-center gap-1">
+                        <input type="radio" name="tier" value="select1" checked={healthTier === 'select1'} onChange={() => setHealthTier('select1')} className="accent-blue-700" />
+                        Select 1
+                      </label>
+                      <label className="inline-flex items-center gap-1">
+                        <input type="radio" name="tier" value="select2" checked={healthTier === 'select2'} onChange={() => setHealthTier('select2')} className="accent-green-600" />
+                        Select 2
+                      </label>
+                      <label className="inline-flex items-center gap-1">
+                        <input type="radio" name="tier" value="select3" checked={healthTier === 'select3'} onChange={() => setHealthTier('select3')} className="accent-yellow-600" />
+                        Select 3
+                      </label>
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-col items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
                   <div
-                    className="bg-blue-600 text-white rounded-2xl px-10 py-6 shadow-xl text-center text-3xl font-extrabold tracking-tight min-h-[64px] flex flex-col items-center justify-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
+                    className="bg-blue-600 text-white rounded-2xl px-6 sm:px-10 py-6 shadow-xl text-center text-2xl sm:text-3xl font-extrabold tracking-tight min-h-[64px] flex flex-col items-center justify-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
                     onClick={() => window.location.href = 'tel:5037645097'}
                     role="button"
                     tabIndex={0}
@@ -451,13 +459,13 @@ const FinalExpensePage: React.FC = () => {
                     {selectedState && burialType && quote ? (
                       <>
                         <div className="flex items-baseline justify-center gap-2 w-full">
-                          <span>${quote}</span>
-                          <span className="text-base font-medium">/month</span>
+                          <span className="text-xl sm:text-3xl">${quote}</span>
+                          <span className="text-sm sm:text-base font-medium">/month</span>
                         </div>
                         <span className="text-xs text-white font-medium mt-2">Click to Secure</span>
                       </>
                     ) : (
-                      <span className="text-lg font-semibold text-blue-100">Input info above to get your rate!</span>
+                      <span className="text-base sm:text-lg font-semibold text-blue-100">Input info above to get your rate!</span>
                     )}
                   </div>
                   <span className="text-xs text-gray-500 mt-2">* Final rates may vary based on official medical underwriting.</span>

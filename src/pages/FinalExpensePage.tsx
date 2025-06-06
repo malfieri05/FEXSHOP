@@ -19,8 +19,8 @@ const FinalExpensePage: React.FC = () => {
 
   // Add state for quote slider section
   const [quoteGender, setQuoteGender] = useState<'male' | 'female'>('male');
-  const [quoteAge, setQuoteAge] = useState(60);
-  const [quoteCoverage, setQuoteCoverage] = useState(10000);
+  const [quoteAge, setQuoteAge] = useState(50);
+  const [quoteCoverage, setQuoteCoverage] = useState(5000);
 
   // Add state for health tier (default: select1)
   const [healthTier, setHealthTier] = useState<'select1' | 'select2' | 'select3'>('select1');
@@ -371,12 +371,19 @@ const FinalExpensePage: React.FC = () => {
               </div>
               {/* Health Tier Result Box */}
               <div className="w-full flex justify-center my-4">
-                <div className={`flex flex-col items-center px-8 py-4 rounded-2xl shadow border text-lg font-semibold ${healthTier === 'select1' ? 'bg-blue-50 text-blue-700 border-blue-200' : healthTier === 'select2' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-yellow-50 text-yellow-700 border-yellow-200'}`}>
-                  <span>Your Health Tier: <span className="font-bold">{healthTier.replace('select', 'Select ')}</span></span>
-                  <span className="text-sm font-normal mt-1 text-gray-500">This helps us match you to the most accurate rate.</span>
+                <div className={`flex flex-col justify-center items-center px-8 py-5 rounded-2xl shadow-xl border text-xl font-medium transition-transform duration-200 bg-opacity-90 will-change-transform
+                  ${healthTier === 'select1' ? 'bg-blue-50 text-blue-700 border-blue-200' : healthTier === 'select2' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-yellow-50 text-yellow-700 border-yellow-200'}
+                  hover:scale-101 hover:-translate-y-0.5 hover:shadow-[0_4px_16px_0_rgba(34,197,94,0.10)]
+                `} style={{boxShadow: '0 4px 16px 0 rgba(34, 197, 94, 0.07), 0 1.5px 8px 0 rgba(0,0,0,0.06)'}}> 
+                  <span className="flex items-center justify-center w-full">Your Health Tier: <span className="font-extrabold text-2xl ml-2">{healthTier.replace('select', 'Select ')}</span></span>
                 </div>
               </div>
-              {/* --- SLIDER SECTION: Now below the questionnaire --- */}
+              <div className="w-full flex justify-center mb-4">
+                <span className="text-xs text-gray-500 italic text-center max-w-xl block">
+                  In some cases, expert advice from an agent can help you navigate the health classifications in order to find you a better rate. Call if you think this applies to you.
+                </span>
+              </div>
+              {/* --- SLIDER SECTION: Now below the questionnaire --- */} 
               <div className="w-full bg-white rounded-2xl shadow-lg p-4 sm:p-8 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 items-center justify-between border border-blue-100 mt-6">
                 <div className="flex flex-col gap-3 sm:gap-4 w-full md:w-2/3">
                   <div className="flex gap-6 items-center">
@@ -462,7 +469,7 @@ const FinalExpensePage: React.FC = () => {
                       style={{ width: 'auto', minWidth: 'unset', fontSize: '0.95rem', padding: '0.4rem 1rem' }}
                       onClick={() => setShowShareModal(true)}
                     >
-                      Send me my quote
+                      Send me my quote!
                     </button>
                   )}
                 </div>

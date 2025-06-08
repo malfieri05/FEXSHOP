@@ -157,6 +157,9 @@ const FinalExpensePage: React.FC = () => {
   const [sharePhone, setSharePhone] = useState("");
   const [shareSuccess, setShareSuccess] = useState(false);
 
+  // Add state for sending
+  const [isSendingQuote, setIsSendingQuote] = useState(false);
+
   return (
     <section className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-white to-blue-300 relative overflow-x-hidden py-12 px-2">
       {/* Subtle background shapes */}
@@ -506,6 +509,8 @@ const FinalExpensePage: React.FC = () => {
                   className="flex flex-col gap-4"
                   onSubmit={async e => {
                     e.preventDefault();
+                    if (isSendingQuote) return;
+                    setIsSendingQuote(true);
                     try {
                       const response = await fetch('https://fexshop.onrender.com/api/send-quote', {
                         method: 'POST',
@@ -529,6 +534,8 @@ const FinalExpensePage: React.FC = () => {
                       }
                     } catch (error) {
                       alert('Failed to send quote. Please try again.');
+                    } finally {
+                      setIsSendingQuote(false);
                     }
                   }}
                 >
@@ -542,9 +549,10 @@ const FinalExpensePage: React.FC = () => {
                   />
                   <button
                     type="submit"
-                    className="w-full bg-blue-700 text-white py-2 sm:py-3 rounded-lg font-bold text-base sm:text-lg hover:bg-blue-800 transition mt-2"
+                    className="w-full bg-blue-700 text-white py-2 sm:py-3 rounded-lg font-bold text-base sm:text-lg hover:bg-blue-800 transition mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                    disabled={isSendingQuote}
                   >
-                    Send My Quote
+                    {isSendingQuote ? 'Sending...' : 'Send My Quote'}
                   </button>
                 </form>
               </>

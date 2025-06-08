@@ -208,11 +208,11 @@ const FinalExpensePage: React.FC = () => {
         <form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-4 w-full justify-center items-center">
             <div className="relative w-full md:w-1/2">
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-blue-400 pointer-events-none z-10 flex items-center" style={{height: '100%'}}>
-                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6v6l4 2"/></svg>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 pointer-events-none z-10 flex items-center" style={{height: '100%'}}>
+                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6v6l4 2"/></svg>
               </span>
               <select
-                className="pl-14 pr-3 py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-base sm:text-lg shadow-sm"
+                className="pl-16 pr-4 py-4 rounded-xl border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-lg sm:text-xl shadow-sm appearance-none"
                 value={selectedState}
                 onChange={handleStateChange}
                 required
@@ -223,12 +223,12 @@ const FinalExpensePage: React.FC = () => {
                 ))}
               </select>
             </div>
-            <div className="relative w-full md:w-1/2 mt-3 md:mt-0">
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-blue-400 pointer-events-none z-10 flex items-center" style={{height: '100%'}}>
-                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+            <div className="relative w-full md:w-1/2 mt-4 md:mt-0">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 pointer-events-none z-10 flex items-center" style={{height: '100%'}}>
+                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
               </span>
               <select
-                className="pl-14 pr-3 py-3 rounded-lg border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-base sm:text-lg shadow-sm"
+                className="pl-16 pr-4 py-4 rounded-xl border border-blue-200 w-full bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-lg sm:text-xl shadow-sm appearance-none"
                 value={burialType}
                 onChange={handleBurialTypeChange}
                 required
@@ -289,10 +289,10 @@ const FinalExpensePage: React.FC = () => {
                 <div className="space-y-2">
                   {/* Q1 (tobacco) */}
                   <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
-                    <div className="font-bold text-lg text-blue-800">
+                    <div className="font-bold text-lg text-blue-800 text-center w-full">
                       1. Have you used tobacco in the past 12 months?
                     </div>
-                    <div className="flex flex-row flex-wrap gap-3 mt-2">
+                    <div className="flex flex-row flex-wrap gap-3 mt-2 justify-center items-center w-full">
                       <label className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg transition border-2 ${q5 === 'yes' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-blue-200 hover:bg-blue-100'}`}>
                         <input type="radio" name="q5" value="yes" checked={q5 === "yes"} onChange={() => setQ5("yes")} className="accent-blue-600 w-5 h-5" />
                         Yes
@@ -305,10 +305,10 @@ const FinalExpensePage: React.FC = () => {
                   </div>
                   {/* Q2 (oxygen/wheelchair/nursing home) */}
                   <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
-                    <div className="font-bold text-lg text-blue-800">
+                    <div className="font-bold text-lg text-blue-800 text-center w-full">
                       2. Do you currently use oxygen, a wheelchair, or reside in a nursing home?
                     </div>
-                    <div className="flex flex-row flex-wrap gap-3 mt-2">
+                    <div className="flex flex-row flex-wrap gap-3 mt-2 justify-center items-center w-full">
                       <label className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg transition border-2 ${q3 === 'yes' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-blue-200 hover:bg-blue-100'}`}>
                         <input type="radio" name="q3" value="yes" checked={q3 === "yes"} onChange={() => setQ3("yes")} className="accent-blue-600 w-5 h-5" />
                         Yes
@@ -321,10 +321,10 @@ const FinalExpensePage: React.FC = () => {
                   </div>
                   {/* Q3 (hospitalized overnight) */}
                   <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
-                    <div className="font-bold text-lg text-blue-800">
+                    <div className="font-bold text-lg text-blue-800 text-center w-full">
                       3. In the past 2 years, have you been hospitalized overnight for any reason?
                     </div>
-                    <div className="flex flex-row flex-wrap gap-3 mt-2">
+                    <div className="flex flex-row flex-wrap gap-3 mt-2 justify-center items-center w-full">
                       <label className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg transition border-2 ${q2 === 'yes' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-blue-200 hover:bg-blue-100'}`}>
                         <input type="radio" name="q2" value="yes" checked={q2 === "yes"} onChange={() => setQ2("yes")} className="accent-blue-600 w-5 h-5" />
                         Yes
@@ -337,10 +337,10 @@ const FinalExpensePage: React.FC = () => {
                   </div>
                   {/* Q4 (well controlled conditions) */}
                   <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
-                    <div className="font-bold text-lg text-blue-800">
+                    <div className="font-bold text-lg text-blue-800 text-center w-full">
                       4. Do you have any of the following conditions, but they are well controlled (e.g., with medication): high blood pressure, high cholesterol, type 2 diabetes (non-insulin)?
                     </div>
-                    <div className="flex flex-row flex-wrap gap-3 mt-2">
+                    <div className="flex flex-row flex-wrap gap-3 mt-2 justify-center items-center w-full">
                       <label className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg transition border-2 ${q4 === 'yes' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-blue-200 hover:bg-blue-100'}`}>
                         <input type="radio" name="q4" value="yes" checked={q4 === "yes"} onChange={() => setQ4("yes")} className="accent-blue-600 w-5 h-5" />
                         Yes
@@ -353,10 +353,10 @@ const FinalExpensePage: React.FC = () => {
                   </div>
                   {/* Q5 (diagnosed/treated for serious conditions) */}
                   <div className="p-3 sm:p-5 rounded-xl bg-blue-50 shadow flex flex-col gap-2">
-                    <div className="font-bold text-lg text-blue-800">
+                    <div className="font-bold text-lg text-blue-800 text-center w-full">
                       5. In the past 2 years, have you been diagnosed with, treated for, or advised to have treatment for any of the following: cancer (other than basal cell skin cancer), heart attack, stroke, congestive heart failure, COPD/emphysema, kidney failure, HIV/AIDS?
                     </div>
-                    <div className="flex flex-row flex-wrap gap-3 mt-2">
+                    <div className="flex flex-row flex-wrap gap-3 mt-2 justify-center items-center w-full">
                       <label className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg transition border-2 ${q1 === 'yes' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-blue-200 hover:bg-blue-100'}`}>
                         <input type="radio" name="q1" value="yes" checked={q1 === "yes"} onChange={() => setQ1("yes")} className="accent-blue-600 w-5 h-5" />
                         Yes
@@ -384,55 +384,42 @@ const FinalExpensePage: React.FC = () => {
                 </span>
               </div>
               {/* --- SLIDER SECTION: Now below the questionnaire --- */} 
-              <div className="w-full bg-white rounded-2xl shadow-lg p-4 sm:p-8 mb-8 flex flex-col md:flex-row gap-4 md:gap-8 items-center justify-between border border-blue-100 mt-6">
-                <div className="flex flex-col gap-3 sm:gap-4 w-full md:w-2/3">
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
-                    <label className="font-semibold text-blue-700 whitespace-nowrap">Gender:</label>
-                    <div className="flex flex-row flex-wrap gap-3 w-full sm:w-auto">
-                      <label className="inline-flex items-center gap-1">
-                        <input type="radio" name="gender" value="male" checked={quoteGender === 'male'} onChange={() => setQuoteGender('male')} className="accent-blue-700" />
-                        Male
-                      </label>
-                      <label className="inline-flex items-center gap-1">
-                        <input type="radio" name="gender" value="female" checked={quoteGender === 'female'} onChange={() => setQuoteGender('female')} className="accent-pink-600" />
-                        Female
-                      </label>
+              <div className="w-full bg-white rounded-2xl shadow-lg p-4 sm:p-8 mb-8 flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-between border border-blue-100 mt-8">
+                <div className="flex flex-col gap-5 sm:gap-6 w-full md:w-2/3">
+                  <div className="flex flex-col items-center w-full">
+                    <div className="flex flex-row items-center justify-center gap-2 mb-2">
+                      <label className="font-semibold text-blue-700 text-lg sm:text-xl">Age:</label>
+                      <span className="font-bold text-2xl sm:text-3xl text-blue-900">{quoteAge}</span>
                     </div>
+                    <input
+                      id="age-slider"
+                      type="range"
+                      min={60}
+                      max={80}
+                      value={quoteAge}
+                      onChange={e => setQuoteAge(Number(e.target.value))}
+                      className="w-full sm:w-48 accent-blue-700"
+                    />
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
-                    <label className="font-semibold text-blue-700 whitespace-nowrap" htmlFor="age-slider">Age:</label>
-                    <div className="flex items-center gap-4 w-full sm:w-auto">
-                      <input
-                        id="age-slider"
-                        type="range"
-                        min={60}
-                        max={80}
-                        value={quoteAge}
-                        onChange={e => setQuoteAge(Number(e.target.value))}
-                        className="w-full sm:w-48 accent-blue-700"
-                      />
-                      <span className="font-bold text-base sm:text-lg text-blue-900 w-12 text-center min-w-0 truncate">{quoteAge}</span>
+                  <div className="flex flex-col items-center w-full mt-6">
+                    <div className="flex flex-row items-center justify-center gap-2 mb-2">
+                      <label className="font-semibold text-blue-700 text-lg sm:text-xl">Coverage:</label>
+                      <span className="font-bold text-2xl sm:text-3xl text-blue-900">${quoteCoverage.toLocaleString()}</span>
                     </div>
+                    <input
+                      id="coverage-slider"
+                      type="range"
+                      min={5000}
+                      max={20000}
+                      step={1000}
+                      value={quoteCoverage}
+                      onChange={e => setQuoteCoverage(Number(e.target.value))}
+                      className="w-full sm:w-48 accent-blue-700"
+                    />
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
-                    <label className="font-semibold text-blue-700 whitespace-nowrap" htmlFor="coverage-slider">Coverage:</label>
-                    <div className="flex items-center gap-4 w-full sm:w-auto">
-                      <input
-                        id="coverage-slider"
-                        type="range"
-                        min={5000}
-                        max={20000}
-                        step={1000}
-                        value={quoteCoverage}
-                        onChange={e => setQuoteCoverage(Number(e.target.value))}
-                        className="w-full sm:w-48 accent-blue-700"
-                      />
-                      <span className="font-bold text-base sm:text-lg text-blue-900 w-24 text-center min-w-0 truncate">${quoteCoverage.toLocaleString()}</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
-                    <label className="font-semibold text-blue-700 whitespace-nowrap">Health Tier:</label>
-                    <div className="flex flex-row flex-wrap gap-3 w-full sm:w-auto">
+                  <div className="flex flex-col items-center w-full mt-6">
+                    <label className="font-semibold text-blue-700 text-lg sm:text-xl mb-2">Health Tier:</label>
+                    <div className="flex flex-row flex-wrap gap-4 justify-center w-full sm:w-auto">
                       <label className="inline-flex items-center gap-1">
                         <input type="radio" name="tier" value="select1" checked={healthTier === 'select1'} onChange={() => setHealthTier('select1')} className="accent-blue-700" />
                         Select 1
@@ -448,9 +435,9 @@ const FinalExpensePage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
+                <div className="flex flex-col items-center justify-center w-full md:w-1/3 mt-6 md:mt-0">
                   <div
-                    className="bg-blue-600 text-white rounded-2xl px-6 sm:px-10 py-6 shadow-xl text-center text-2xl sm:text-3xl font-extrabold tracking-tight min-h-[64px] flex flex-col items-center justify-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
+                    className="bg-blue-600 text-white rounded-2xl px-6 sm:px-10 py-8 shadow-xl text-center text-3xl sm:text-4xl font-extrabold tracking-tight min-h-[64px] flex flex-col items-center justify-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
                     onClick={() => window.location.href = 'tel:5037645097'}
                     role="button"
                     tabIndex={0}
@@ -459,22 +446,22 @@ const FinalExpensePage: React.FC = () => {
                     {selectedState && burialType && quote ? (
                       <>
                         <div className="flex items-baseline justify-center gap-2 w-full">
-                          <span className="text-xl sm:text-3xl">${quote}</span>
-                          <span className="text-sm sm:text-base font-medium">/month</span>
+                          <span className="text-2xl sm:text-4xl">${quote}</span>
+                          <span className="text-base sm:text-lg font-medium">/month</span>
                         </div>
-                        <span className="text-xs text-white font-medium mt-2">Click to Secure</span>
+                        <span className="text-sm text-white font-medium mt-2">Click to Secure</span>
                       </>
                     ) : (
-                      <span className="text-base sm:text-lg font-semibold text-blue-100">Input info above to get your rate!</span>
+                      <span className="text-lg sm:text-xl font-semibold text-blue-100">Input info above to get your rate!</span>
                     )}
                   </div>
-                  <span className="text-xs text-gray-500 mt-2">* Final rates may vary based on official medical underwriting.</span>
+                  <span className="text-xs text-gray-500 mt-3">* Final rates may vary based on official medical underwriting.</span>
                   {/* Share Quote Button */}
                   {selectedState && burialType && quote && (
                     <button
                       type="button"
-                      className="mt-4 sm:mt-6 bg-blue-50 border border-gray-200 text-gray-800 px-3 py-1.5 rounded-md font-semibold text-sm shadow-sm hover:bg-blue-100 transition w-full sm:w-auto"
-                      style={{ width: 'auto', minWidth: 'unset', fontSize: '0.95rem', padding: '0.4rem 1rem' }}
+                      className="mt-6 sm:mt-8 bg-blue-50 border border-gray-200 text-gray-800 px-4 py-3 rounded-lg font-semibold text-base sm:text-lg shadow-sm hover:bg-blue-100 transition w-full sm:w-auto"
+                      style={{ width: 'auto', minWidth: 'unset', fontSize: '1.1rem', padding: '0.7rem 1.5rem' }}
                       onClick={() => setShowShareModal(true)}
                     >
                       Send me my quote!
@@ -520,7 +507,7 @@ const FinalExpensePage: React.FC = () => {
                   onSubmit={async e => {
                     e.preventDefault();
                     try {
-                      const response = await fetch('https://your-app.onrender.com/api/send-quote', {
+                      const response = await fetch('https://formspree.io/f/myzjzjpd', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

@@ -70,7 +70,7 @@ const FinalExpensePage: React.FC = () => {
     setSubmitSuccess(false);
 
     try {
-      const response = await fetch('https://formspree.io/f/myzjzjpd', {
+      const response = await fetch('https://fexshop.onrender.com/api/send-quote', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -507,7 +507,7 @@ const FinalExpensePage: React.FC = () => {
                   onSubmit={async e => {
                     e.preventDefault();
                     try {
-                      const response = await fetch('https://formspree.io/f/myzjzjpd', {
+                      const response = await fetch('https://fexshop.onrender.com/api/send-quote', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

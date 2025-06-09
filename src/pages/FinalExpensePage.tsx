@@ -172,7 +172,7 @@ const FinalExpensePage: React.FC = () => {
       {/* Page Header - now above the card */}
       <div className="w-full flex flex-col items-center justify-center mb-8 mt-2">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg text-center">Final Expense Plans</h1>
-        <p className="text-lg md:text-xl text-gray-700 font-medium text-center max-w-2xl">Complete protection. Made simple.</p>
+        <p className="text-lg md:text-xl text-gray-700 font-medium text-center max-w-2xl">Instant Quote. No SSN required. No pushy calls.</p>
       </div>
       <div className="w-full max-w-4xl mx-auto mt-2 mb-8 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-6">
         {/* Step 1 */}

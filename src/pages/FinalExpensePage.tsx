@@ -588,10 +588,31 @@ const FinalExpensePage: React.FC = () => {
       {/* Secure Quote Modal */}
       {showSecureQuoteModal && ReactDOM.createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 px-2 sm:px-0">
-          <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-10 max-w-md w-full relative flex flex-col gap-8 border border-blue-100 items-center">
+          <div
+            className="bg-white rounded-3xl shadow-2xl max-w-md w-full relative flex flex-col gap-6 border border-blue-100 items-center"
+            style={{ padding: '2rem 1rem', boxSizing: 'border-box' }}
+          >
             <button className="absolute top-4 right-4 text-gray-400 hover:text-blue-700 text-2xl" onClick={() => setShowSecureQuoteModal(false)}>&times;</button>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-blue-800 text-center mb-4 mt-2">Secure Your Quote</h2>
-            <a href="tel:5037645097" className="font-extrabold text-center block hover:underline" style={{ color: '#60a5fa', fontSize: '6rem', letterSpacing: '2px', marginTop: '0.5rem', marginBottom: '0.5rem', lineHeight: 1 }}>503-764-5097</a>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-blue-800 text-center mb-2 mt-2">Secure Your Quote</h2>
+            <a
+              href="tel:5037645097"
+              className="font-extrabold text-center block hover:underline"
+              style={{
+                color: '#60a5fa',
+                fontSize: '2.5rem',
+                letterSpacing: '2px',
+                margin: '1.5rem 0 1rem 0',
+                lineHeight: 1.1,
+                wordBreak: 'keep-all',
+                textShadow: '0 2px 8px rgba(96,165,250,0.08)',
+                whiteSpace: 'nowrap',
+                maxWidth: '100%',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              503-764-5097
+            </a>
             <span className="text-lg sm:text-xl font-normal text-gray-900 text-center">Call or Text Now!</span>
           </div>
         </div>,

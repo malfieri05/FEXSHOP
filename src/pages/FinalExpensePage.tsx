@@ -35,13 +35,19 @@ const FinalExpensePage: React.FC = () => {
   // Auto-classify health tier based on answers
   React.useEffect(() => {
     if (!selectedState || !burialType) return;
-    if ([q1, q2, q3].includes("yes")) {
+    // If all questions are answered 'yes', set to select3
+    if ([q1, q2, q3, q4, q5].every(q => q === "yes")) {
       setHealthTier("select3");
-    } else if (q4 === "yes" || q5 === "yes") {
+    } 
+    // If 3 or more questions are answered 'yes', set to select2
+    else if ([q1, q2, q3, q4, q5].filter(q => q === "yes").length >= 3) {
       setHealthTier("select2");
-    } else if ([q1, q2, q3, q4, q5].every(q => q === "no")) {
+    } 
+    // If all are 'no', set to select1
+    else if ([q1, q2, q3, q4, q5].every(q => q === "no")) {
       setHealthTier("select1");
     }
+    // Otherwise, keep default (select1)
   }, [q1, q2, q3, q4, q5, selectedState, burialType]);
 
   // Handle form input changes
@@ -159,6 +165,14 @@ const FinalExpensePage: React.FC = () => {
 
   // Add state for sending
   const [isSendingQuote, setIsSendingQuote] = useState(false);
+
+  // Add state for the secure quote popup
+  const [showSecureQuoteModal, setShowSecureQuoteModal] = useState(false);
+
+  // Handle secure quote button click
+  const handleSecureQuoteClick = () => {
+    setShowSecureQuoteModal(true);
+  };
 
   return (
     <section className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-white to-blue-300 relative overflow-x-hidden py-12 px-2">
@@ -441,7 +455,7 @@ const FinalExpensePage: React.FC = () => {
                 <div className="flex flex-col items-center justify-center w-full md:w-1/3 mt-6 md:mt-0">
                   <div
                     className="bg-blue-600 text-white rounded-2xl px-6 sm:px-10 py-8 shadow-xl text-center text-3xl sm:text-4xl font-extrabold tracking-tight min-h-[64px] flex flex-col items-center justify-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
-                    onClick={() => window.location.href = 'tel:5037645097'}
+                    onClick={handleSecureQuoteClick}
                     role="button"
                     tabIndex={0}
                     style={{ outline: 'none' }}
@@ -567,6 +581,18 @@ const FinalExpensePage: React.FC = () => {
                 <button className="mt-2 px-4 sm:px-6 py-2 rounded-lg bg-blue-700 text-white font-bold hover:bg-blue-800 text-base sm:text-lg" onClick={() => { setShowShareModal(false); setShareSuccess(false); setShareEmail(""); setSharePhone(""); }}>Close</button>
               </div>
             )}
+          </div>
+        </div>,
+        document.body
+      )}
+      {/* Secure Quote Modal */}
+      {showSecureQuoteModal && ReactDOM.createPortal(
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 px-2 sm:px-0">
+          <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-10 max-w-md w-full relative flex flex-col gap-8 border border-blue-100 items-center">
+            <button className="absolute top-4 right-4 text-gray-400 hover:text-blue-700 text-2xl" onClick={() => setShowSecureQuoteModal(false)}>&times;</button>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-blue-800 text-center mb-4 mt-2">Secure Your Quote</h2>
+            <a href="tel:5037645097" className="font-extrabold text-center block hover:underline" style={{ color: '#60a5fa', fontSize: '6rem', letterSpacing: '2px', marginTop: '0.5rem', marginBottom: '0.5rem', lineHeight: 1 }}>503-764-5097</a>
+            <span className="text-lg sm:text-xl font-normal text-gray-900 text-center">Call or Text Now!</span>
           </div>
         </div>,
         document.body

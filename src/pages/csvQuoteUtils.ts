@@ -2,6 +2,197 @@
 // NOTE: These rates are used for ALL STATES (not just Michigan)
 // The tables for Michigan are the national default for quoting.
 
+// New function to parse the final expense CSV data
+function parseFinalExpenseCSV(csvData: string) {
+  const lines = csvData.trim().split('\n');
+  const headers = lines[0].split(',');
+  return lines.slice(1).map(line => {
+    const values = line.split(',');
+    const row: Record<string, string> = {};
+    headers.forEach((h, i) => row[h] = values[i]);
+    return row;
+  });
+}
+
+// Import the new final expense data
+const finalExpenseCSV = `Gender,Age,Health Tier,Coverage Amount,Monthly Premium ($)
+Male,50,Eagle Select 1,21000,70.82
+Male,50,Eagle Select 1,22000,78.64
+Male,50,Eagle Select 1,23000,86.46
+Male,50,Eagle Select 1,24000,94.28
+Male,50,Eagle Select 1,25000,102.1
+Male,50,Eagle Select 1,26000,109.92
+Male,50,Eagle Select 1,27000,117.74
+Male,50,Eagle Select 1,28000,125.56
+Male,50,Eagle Select 1,29000,133.38
+Male,50,Eagle Select 1,30000,141.2
+Male,50,Eagle Select 1,31000,149.02
+Male,50,Eagle Select 1,32000,156.84
+Male,50,Eagle Select 1,33000,164.66
+Male,50,Eagle Select 1,34000,172.48
+Male,50,Eagle Select 1,35000,180.3
+Male,50,Eagle Select 1,36000,188.12
+Male,50,Eagle Select 1,37000,195.94
+Male,50,Eagle Select 1,38000,203.76
+Male,50,Eagle Select 1,39000,211.58
+Male,50,Eagle Select 1,40000,219.4
+Male,60,Eagle Select 1,21000,86.38
+Male,60,Eagle Select 1,22000,90.31
+Male,60,Eagle Select 1,23000,94.24
+Male,60,Eagle Select 1,24000,98.17
+Male,60,Eagle Select 1,25000,102.1
+Male,60,Eagle Select 1,26000,106.03
+Male,60,Eagle Select 1,27000,109.96
+Male,60,Eagle Select 1,28000,113.89
+Male,60,Eagle Select 1,29000,117.82
+Male,60,Eagle Select 1,30000,121.75
+Male,60,Eagle Select 1,31000,125.68
+Male,60,Eagle Select 1,32000,129.61
+Male,60,Eagle Select 1,33000,133.54
+Male,60,Eagle Select 1,34000,137.47
+Male,60,Eagle Select 1,35000,141.4
+Male,60,Eagle Select 1,36000,145.33
+Male,60,Eagle Select 1,37000,149.26
+Male,60,Eagle Select 1,38000,153.19
+Male,60,Eagle Select 1,39000,157.12
+Male,60,Eagle Select 1,40000,161.05
+Male,70,Eagle Select 1,21000,155.92
+Male,70,Eagle Select 1,22000,159.85
+Male,70,Eagle Select 1,23000,163.78
+Male,70,Eagle Select 1,24000,167.71
+Male,70,Eagle Select 1,25000,171.64
+Male,70,Eagle Select 1,26000,175.57
+Male,70,Eagle Select 1,27000,179.5
+Male,70,Eagle Select 1,28000,183.43
+Male,70,Eagle Select 1,29000,187.36
+Male,70,Eagle Select 1,30000,191.29
+Male,70,Eagle Select 1,31000,195.22
+Male,70,Eagle Select 1,32000,199.15
+Male,70,Eagle Select 1,33000,203.08
+Male,70,Eagle Select 1,34000,207.01
+Male,70,Eagle Select 1,35000,210.94
+Male,70,Eagle Select 1,36000,214.87
+Male,70,Eagle Select 1,37000,218.8
+Male,70,Eagle Select 1,38000,222.73
+Male,70,Eagle Select 1,39000,226.66
+Male,70,Eagle Select 1,40000,230.59
+Female,50,Eagle Select 1,21000,60.82
+Female,50,Eagle Select 1,22000,68.64
+Female,50,Eagle Select 1,23000,76.46
+Female,50,Eagle Select 1,24000,84.28
+Female,50,Eagle Select 1,25000,92.1
+Female,50,Eagle Select 1,26000,99.92
+Female,50,Eagle Select 1,27000,107.74
+Female,50,Eagle Select 1,28000,115.56
+Female,50,Eagle Select 1,29000,123.38
+Female,50,Eagle Select 1,30000,131.2
+Female,50,Eagle Select 1,31000,139.02
+Female,50,Eagle Select 1,32000,146.84
+Female,50,Eagle Select 1,33000,154.66
+Female,50,Eagle Select 1,34000,162.48
+Female,50,Eagle Select 1,35000,170.3
+Female,50,Eagle Select 1,36000,178.12
+Female,50,Eagle Select 1,37000,185.94
+Female,50,Eagle Select 1,38000,193.76
+Female,50,Eagle Select 1,39000,201.58
+Female,50,Eagle Select 1,40000,209.4
+Female,60,Eagle Select 1,21000,84.42
+Female,60,Eagle Select 1,22000,88.84
+Female,60,Eagle Select 1,23000,93.26
+Female,60,Eagle Select 1,24000,97.68
+Female,60,Eagle Select 1,25000,102.1
+Female,60,Eagle Select 1,26000,106.52
+Female,60,Eagle Select 1,27000,110.94
+Female,60,Eagle Select 1,28000,115.36
+Female,60,Eagle Select 1,29000,119.78
+Female,60,Eagle Select 1,30000,124.2
+Female,60,Eagle Select 1,31000,128.62
+Female,60,Eagle Select 1,32000,133.04
+Female,60,Eagle Select 1,33000,137.46
+Female,60,Eagle Select 1,34000,141.88
+Female,60,Eagle Select 1,35000,146.3
+Female,60,Eagle Select 1,36000,150.72
+Female,60,Eagle Select 1,37000,155.14
+Female,60,Eagle Select 1,38000,159.56
+Female,60,Eagle Select 1,39000,163.98
+Female,60,Eagle Select 1,40000,168.4
+Female,70,Eagle Select 1,21000,152.32
+Female,70,Eagle Select 1,22000,157.15
+Female,70,Eagle Select 1,23000,161.98
+Female,70,Eagle Select 1,24000,166.81
+Female,70,Eagle Select 1,25000,171.64
+Female,70,Eagle Select 1,26000,176.47
+Female,70,Eagle Select 1,27000,181.3
+Female,70,Eagle Select 1,28000,186.13
+Female,70,Eagle Select 1,29000,190.96
+Female,70,Eagle Select 1,30000,195.79
+Female,70,Eagle Select 1,31000,200.62
+Female,70,Eagle Select 1,32000,205.45
+Female,70,Eagle Select 1,33000,210.28
+Female,70,Eagle Select 1,34000,215.11
+Female,70,Eagle Select 1,35000,219.94
+Female,70,Eagle Select 1,36000,224.77
+Female,70,Eagle Select 1,37000,229.6
+Female,70,Eagle Select 1,38000,234.43
+Female,70,Eagle Select 1,39000,239.26
+Female,70,Eagle Select 1,40000,244.09`;
+
+const finalExpenseRates = parseFinalExpenseCSV(finalExpenseCSV);
+
+// Function to get quote from the new final expense data
+export function getFinalExpenseQuote(gender: 'male' | 'female', age: number, coverage: number): string | null {
+  const genderStr = gender === 'male' ? 'Male' : 'Female';
+  const ageStr = age.toString();
+  
+  // Find exact match first
+  const exactMatch = finalExpenseRates.find(row => 
+    row.Gender === genderStr && 
+    row.Age === ageStr && 
+    row['Coverage Amount'] === coverage.toString()
+  );
+  
+  if (exactMatch) {
+    return exactMatch['Monthly Premium ($)'];
+  }
+  
+  // If no exact match, find the closest coverage amounts for interpolation
+  const ageMatches = finalExpenseRates.filter(row => 
+    row.Gender === genderStr && 
+    row.Age === ageStr
+  );
+  
+  if (ageMatches.length === 0) return null;
+  
+  // Sort by coverage amount
+  ageMatches.sort((a, b) => parseInt(a['Coverage Amount']) - parseInt(b['Coverage Amount']));
+  
+  // Find the two closest coverage amounts
+  let lower: Record<string, string> | null = null;
+  let upper: Record<string, string> | null = null;
+  
+  for (let i = 0; i < ageMatches.length - 1; i++) {
+    const currentCoverage = parseInt(ageMatches[i]['Coverage Amount']);
+    const nextCoverage = parseInt(ageMatches[i + 1]['Coverage Amount']);
+    
+    if (coverage >= currentCoverage && coverage <= nextCoverage) {
+      lower = ageMatches[i];
+      upper = ageMatches[i + 1];
+      break;
+    }
+  }
+  
+  if (!lower || !upper) return null;
+  
+  // Linear interpolation
+  const lowerCoverage = parseInt(lower['Coverage Amount']);
+  const upperCoverage = parseInt(upper['Coverage Amount']);
+  const lowerPremium = parseFloat(lower['Monthly Premium ($)']);
+  const upperPremium = parseFloat(upper['Monthly Premium ($)']);
+  
+  const interpolated = lowerPremium + ((coverage - lowerCoverage) / (upperCoverage - lowerCoverage)) * (upperPremium - lowerPremium);
+  return interpolated.toFixed(2);
+}
+
 const maleCSV = `AGE,5000,10000,15000,20000
 60,23.46,43.12,62.78,82.44
 61,24.68,45.56,66.44,87.32
@@ -182,6 +373,15 @@ const select2Female = [
 ];
 
 export function getNationalQuote(gender: 'male' | 'female', age: number, coverage: number, tier: 'select1' | 'select2' | 'select3' = 'select1'): string | null {
+  // For higher coverage amounts ($21,000-$40,000), try the new final expense data first
+  if (coverage >= 21000 && coverage <= 40000) {
+    const finalExpenseQuote = getFinalExpenseQuote(gender, age, coverage);
+    if (finalExpenseQuote) {
+      return finalExpenseQuote;
+    }
+    // If no final expense quote available, fall back to existing system
+  }
+  
   if (tier === 'select2') {
     const table = gender === 'male' ? select2Male : select2Female;
     const row = table.find(r => Number(r.AGE) === age);

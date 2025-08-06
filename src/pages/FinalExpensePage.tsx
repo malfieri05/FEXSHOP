@@ -400,90 +400,131 @@ const FinalExpensePage: React.FC = () => {
                   In some cases, expert advice from an agent can help you navigate the health classifications in order to find you a better rate. Call if you think this applies to you.
                 </span>
               </div>
-              {/* --- SLIDER SECTION: Now below the questionnaire --- */} 
-              <div className="w-full bg-white rounded-2xl shadow-lg p-4 sm:p-8 mb-8 flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-between border border-blue-100 mt-8">
-                <div className="flex flex-col gap-5 sm:gap-6 w-full md:w-2/3">
-                  <div className="flex flex-col items-center w-full">
-                    <div className="flex flex-row items-center justify-center gap-2 mb-2">
-                      <label className="font-semibold text-blue-700 text-lg sm:text-xl">Age:</label>
-                      <span className="font-bold text-2xl sm:text-3xl text-blue-900">{quoteAge}</span>
-                    </div>
-                    <input
-                      id="age-slider"
-                      type="range"
-                      min={60}
-                      max={80}
-                      value={quoteAge}
-                      onChange={e => setQuoteAge(Number(e.target.value))}
-                      className="w-full sm:w-48 accent-blue-700"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center w-full mt-6">
-                    <div className="flex flex-row items-center justify-center gap-2 mb-2">
-                      <label className="font-semibold text-blue-700 text-lg sm:text-xl">Coverage:</label>
-                      <span className="font-bold text-2xl sm:text-3xl text-blue-900">${quoteCoverage.toLocaleString()}</span>
-                    </div>
-                    <input
-                      id="coverage-slider"
-                      type="range"
-                      min={5000}
-                      max={20000}
-                      step={1000}
-                      value={quoteCoverage}
-                      onChange={e => setQuoteCoverage(Number(e.target.value))}
-                      className="w-full sm:w-48 accent-blue-700"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center w-full mt-6">
-                    <label className="font-semibold text-blue-700 text-lg sm:text-xl mb-2">Health Tier:</label>
-                    <div className="flex flex-row flex-wrap gap-4 justify-center w-full sm:w-auto">
-                      <label className="inline-flex items-center gap-1">
-                        <input type="radio" name="tier" value="select1" checked={healthTier === 'select1'} onChange={() => setHealthTier('select1')} className="accent-blue-700" />
-                        Select 1
-                      </label>
-                      <label className="inline-flex items-center gap-1">
-                        <input type="radio" name="tier" value="select2" checked={healthTier === 'select2'} onChange={() => setHealthTier('select2')} className="accent-green-600" />
-                        Select 2
-                      </label>
-                      <label className="inline-flex items-center gap-1">
-                        <input type="radio" name="tier" value="select3" checked={healthTier === 'select3'} onChange={() => setHealthTier('select3')} className="accent-yellow-600" />
-                        Select 3
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-center w-full md:w-1/3 mt-6 md:mt-0">
-                  <div
-                    className="bg-blue-600 text-white rounded-2xl px-6 sm:px-10 py-8 shadow-xl text-center text-3xl sm:text-4xl font-extrabold tracking-tight min-h-[64px] flex flex-col items-center justify-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
-                    onClick={handleSecureQuoteClick}
-                    role="button"
-                    tabIndex={0}
-                    style={{ outline: 'none' }}
-                  >
-                    {selectedState && burialType && quote ? (
-                      <>
-                        <div className="flex items-baseline justify-center gap-2 w-full">
-                          <span className="text-2xl sm:text-4xl">${quote}</span>
-                          <span className="text-base sm:text-lg font-medium">/month</span>
+              {/* --- SLIDER SECTION: Sleek horizontal layout --- */} 
+              <div className="w-full bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 border border-blue-100 mt-8">
+                <div className="flex flex-col lg:flex-row gap-8 items-start">
+                  {/* Left side - Input controls */}
+                  <div className="flex-1 space-y-6">
+                    {/* Age and Coverage in a row */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <label className="font-semibold text-blue-700 text-lg">Age:</label>
+                          <span className="font-bold text-2xl text-blue-900">{quoteAge}</span>
                         </div>
-                        <span className="text-sm text-white font-medium mt-2">Click to Secure</span>
-                      </>
-                    ) : (
-                      <span className="text-lg sm:text-xl font-semibold text-blue-100">Input info above to get your rate!</span>
+                        <input
+                          id="age-slider"
+                          type="range"
+                          min={60}
+                          max={80}
+                          value={quoteAge}
+                          onChange={e => setQuoteAge(Number(e.target.value))}
+                          className="w-full accent-blue-700"
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <label className="font-semibold text-blue-700 text-lg">Coverage:</label>
+                          <span className="font-bold text-2xl text-blue-900">${quoteCoverage.toLocaleString()}</span>
+                        </div>
+                        <input
+                          id="coverage-slider"
+                          type="range"
+                          min={5000}
+                          max={40000}
+                          step={1000}
+                          value={quoteCoverage}
+                          onChange={e => setQuoteCoverage(Number(e.target.value))}
+                          className="w-full accent-blue-700"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Gender and Health Tier in a row */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <label className="font-semibold text-blue-700 text-lg block">Gender:</label>
+                        <div className="flex gap-4">
+                          <label className="inline-flex items-center gap-2 cursor-pointer">
+                            <input 
+                              type="radio" 
+                              name="gender" 
+                              value="male" 
+                              checked={quoteGender === 'male'} 
+                              onChange={() => setQuoteGender('male')} 
+                              className="accent-blue-700" 
+                            />
+                            Male
+                          </label>
+                          <label className="inline-flex items-center gap-2 cursor-pointer">
+                            <input 
+                              type="radio" 
+                              name="gender" 
+                              value="female" 
+                              checked={quoteGender === 'female'} 
+                              onChange={() => setQuoteGender('female')} 
+                              className="accent-blue-700" 
+                            />
+                            Female
+                          </label>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <label className="font-semibold text-blue-700 text-lg block">Health Tier:</label>
+                        <div className="flex gap-4">
+                          <label className="inline-flex items-center gap-1">
+                            <input type="radio" name="tier" value="select1" checked={healthTier === 'select1'} onChange={() => setHealthTier('select1')} className="accent-blue-700" />
+                            Select 1
+                          </label>
+                          <label className="inline-flex items-center gap-1">
+                            <input type="radio" name="tier" value="select2" checked={healthTier === 'select2'} onChange={() => setHealthTier('select2')} className="accent-green-600" />
+                            Select 2
+                          </label>
+                          <label className="inline-flex items-center gap-1">
+                            <input type="radio" name="tier" value="select3" checked={healthTier === 'select3'} onChange={() => setHealthTier('select3')} className="accent-yellow-600" />
+                            Select 3
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right side - Quote display */}
+                  <div className="flex flex-col items-center justify-center w-full lg:w-80 lg:flex-shrink-0">
+                    <div
+                      className="bg-blue-600 text-white rounded-2xl px-8 py-10 shadow-xl text-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
+                      onClick={handleSecureQuoteClick}
+                      role="button"
+                      tabIndex={0}
+                      style={{ outline: 'none' }}
+                    >
+                      {selectedState && burialType && quote ? (
+                        <>
+                          <div className="flex items-baseline justify-center gap-2 w-full">
+                            <span className="text-4xl font-bold">${quote}</span>
+                            <span className="text-lg font-medium">/month</span>
+                          </div>
+                          <span className="text-sm text-white font-medium mt-3 block">Click to Secure</span>
+                        </>
+                      ) : (
+                        <span className="text-xl font-semibold text-blue-100">Input info above to get your rate!</span>
+                      )}
+                    </div>
+                    <span className="text-xs text-gray-500 mt-3 text-center">* Final rates may vary based on official medical underwriting.</span>
+                    
+                    {/* Share Quote Button */}
+                    {selectedState && burialType && quote && (
+                      <button
+                        type="button"
+                        className="mt-6 bg-blue-50 border border-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold text-base shadow-sm hover:bg-blue-100 transition w-full"
+                        onClick={() => setShowShareModal(true)}
+                      >
+                        Send me my quote!
+                      </button>
                     )}
                   </div>
-                  <span className="text-xs text-gray-500 mt-3">* Final rates may vary based on official medical underwriting.</span>
-                  {/* Share Quote Button */}
-                  {selectedState && burialType && quote && (
-                    <button
-                      type="button"
-                      className="mt-6 sm:mt-8 bg-blue-50 border border-gray-200 text-gray-800 px-4 py-3 rounded-lg font-semibold text-base sm:text-lg shadow-sm hover:bg-blue-100 transition w-full sm:w-auto"
-                      style={{ width: 'auto', minWidth: 'unset', fontSize: '1.1rem', padding: '0.7rem 1.5rem' }}
-                      onClick={() => setShowShareModal(true)}
-                    >
-                      Send me my quote!
-                    </button>
-                  )}
                 </div>
               </div>
             </>

@@ -7,7 +7,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { Link, Routes, Route, useLocation } from 'react-router-dom'
 // import ChatbaseWidget from './ChatbaseWidget'
-import FinalExpensePage from './pages/FinalExpensePage'
+import QuoteFunnel from './pages/QuoteFunnel'
 
 // Page components
 function CenteredNotification({ show, message, onClose }: { show: boolean, message: string, onClose: () => void }) {
@@ -28,8 +28,94 @@ function CenteredNotification({ show, message, onClose }: { show: boolean, messa
 }
 
 function HomePage() {
-  // Render the FinalExpensePage directly as the homepage
-  return <FinalExpensePage />;
+  return (
+    <section className="min-h-screen w-full flex flex-col items-start justify-start bg-gradient-to-br from-blue-100 via-white to-blue-300 relative overflow-x-hidden pt-16 px-2">
+      {/* Subtle background shapes */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+        <svg width="100%" height="100%" className="absolute top-0 left-0 opacity-10" style={{zIndex:0}}>
+          <circle cx="80%" cy="20%" r="180" fill="#3b82f6" />
+          <circle cx="20%" cy="80%" r="120" fill="#60a5fa" />
+        </svg>
+      </div>
+      
+      {/* Page Header */}
+      <div className="w-full flex flex-col items-center justify-center mb-2 mt-4 px-4">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 md:mb-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg text-center mt-0">Final Expense Protection</h1>
+        <p className="text-base md:text-lg lg:text-xl text-gray-700 font-medium text-center max-w-2xl px-2">Protect your family from financial burden. Get your personalized quote in minutes.</p>
+      </div>
+
+      {/* Main CTA Section */}
+      <div className="w-full max-w-4xl mx-auto mt-1 mb-8 px-4">
+        <div className="bg-white/90 backdrop-blur-lg rounded-2xl md:rounded-3xl shadow-2xl border border-blue-100 p-4 md:p-8 lg:p-12 text-center">
+          <div className="mb-4 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-4 md:mt-8">
+              <div className="flex flex-col items-center p-4 md:p-6 bg-blue-50 rounded-xl">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 md:mb-4">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-blue-700 mb-1 md:mb-2 text-center">No Medical Exam</h3>
+              </div>
+              
+              <div className="flex flex-col items-center p-4 md:p-6 bg-blue-50 rounded-xl">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 md:mb-4">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4z" />
+                    <path fill="white" d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4z" style={{clipPath: 'inset(0 50% 0 0)'}} />
+                  </svg>
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-blue-700 mb-1 md:mb-2 text-center">No SSN Required</h3>
+              </div>
+              
+              <div className="flex flex-col items-center p-4 md:p-6 bg-blue-50 rounded-xl">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 md:mb-4">
+                  <svg className="w-7 h-7 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                  </svg>
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-blue-700 mb-1 md:mb-2 text-center">Tax Free Check</h3>
+              </div>
+            </div>
+          </div>
+          
+          {/* CTA Button */}
+          <div className="mt-4 md:mt-8">
+            <QuoteFunnel />
+          </div>
+          
+          <p className="text-xs md:text-sm text-gray-500 mt-3 md:mt-4 px-2">No SSN required • No spam calls • Instant quotes</p>
+        </div>
+      </div>
+
+      {/* Trust Indicators */}
+      <div className="w-full max-w-4xl mx-auto mt-6 md:mt-8 px-4">
+        <div className="bg-white/80 backdrop-blur-lg rounded-xl md:rounded-2xl shadow-lg border border-blue-100 p-4 md:p-6 text-center">
+          <h3 className="text-lg md:text-xl font-bold text-blue-700 mb-3 md:mb-4">Trusted by Thousands</h3>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+            <div className="flex items-center gap-2">
+              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-gray-700 font-medium">Licensed & Insured</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-gray-700 font-medium">A+ Rated Carriers</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-gray-700 font-medium">24/7 Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function SchedulePage() {
@@ -179,7 +265,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/schedule" element={<SchedulePage />} />
-          <Route path="/final-expense" element={<FinalExpensePage />} />
+          <Route path="/final-expense" element={<QuoteFunnel />} />
         </Routes>
         {/* Professional Footer */}
         <footer className="bg-black text-gray-200 border-t border-gray-800 pt-8 sm:pt-12 pb-6 sm:pb-8 mt-0">

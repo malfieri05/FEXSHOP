@@ -401,16 +401,16 @@ const FinalExpensePage: React.FC = () => {
                 </span>
               </div>
               {/* --- SLIDER SECTION: Sleek horizontal layout --- */} 
-              <div className="w-full bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 border border-blue-100 mt-8">
-                <div className="flex flex-col lg:flex-row gap-8 items-start">
+              <div className="w-full bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 mb-8 border border-blue-100 mt-8">
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
                   {/* Left side - Input controls */}
-                  <div className="flex-1 space-y-6">
+                  <div className="flex-1 space-y-4 sm:space-y-6">
                     {/* Age and Coverage in a row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <label className="font-semibold text-blue-700 text-lg">Age:</label>
-                          <span className="font-bold text-2xl text-blue-900">{quoteAge}</span>
+                          <label className="font-semibold text-blue-700 text-base sm:text-lg">Age:</label>
+                          <span className="font-bold text-xl sm:text-2xl text-blue-900">{quoteAge}</span>
                         </div>
                         <input
                           id="age-slider"
@@ -425,8 +425,8 @@ const FinalExpensePage: React.FC = () => {
                       
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <label className="font-semibold text-blue-700 text-lg">Coverage:</label>
-                          <span className="font-bold text-2xl text-blue-900">${quoteCoverage.toLocaleString()}</span>
+                          <label className="font-semibold text-blue-700 text-base sm:text-lg">Coverage:</label>
+                          <span className="font-bold text-xl sm:text-2xl text-blue-900">${quoteCoverage.toLocaleString()}</span>
                         </div>
                         <input
                           id="coverage-slider"
@@ -442,11 +442,11 @@ const FinalExpensePage: React.FC = () => {
                     </div>
 
                     {/* Gender and Health Tier in a row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div className="space-y-3">
-                        <label className="font-semibold text-blue-700 text-lg block">Gender:</label>
-                        <div className="flex gap-4">
-                          <label className="inline-flex items-center gap-2 cursor-pointer">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                      <div className="space-y-2 sm:space-y-3">
+                        <label className="font-semibold text-blue-700 text-base sm:text-lg block">Gender:</label>
+                        <div className="flex flex-wrap gap-3 sm:gap-4">
+                          <label className="inline-flex items-center gap-2 cursor-pointer text-sm sm:text-base">
                             <input 
                               type="radio" 
                               name="gender" 
@@ -457,7 +457,7 @@ const FinalExpensePage: React.FC = () => {
                             />
                             Male
                           </label>
-                          <label className="inline-flex items-center gap-2 cursor-pointer">
+                          <label className="inline-flex items-center gap-2 cursor-pointer text-sm sm:text-base">
                             <input 
                               type="radio" 
                               name="gender" 
@@ -471,18 +471,18 @@ const FinalExpensePage: React.FC = () => {
                         </div>
                       </div>
                       
-                      <div className="space-y-3">
-                        <label className="font-semibold text-blue-700 text-lg block">Health Tier:</label>
-                        <div className="flex gap-4">
-                          <label className="inline-flex items-center gap-1">
+                      <div className="space-y-2 sm:space-y-3">
+                        <label className="font-semibold text-blue-700 text-base sm:text-lg block">Health Tier:</label>
+                        <div className="flex flex-wrap gap-2 sm:gap-4">
+                          <label className="inline-flex items-center gap-1 text-sm sm:text-base">
                             <input type="radio" name="tier" value="select1" checked={healthTier === 'select1'} onChange={() => setHealthTier('select1')} className="accent-blue-700" />
                             Select 1
                           </label>
-                          <label className="inline-flex items-center gap-1">
+                          <label className="inline-flex items-center gap-1 text-sm sm:text-base">
                             <input type="radio" name="tier" value="select2" checked={healthTier === 'select2'} onChange={() => setHealthTier('select2')} className="accent-green-600" />
                             Select 2
                           </label>
-                          <label className="inline-flex items-center gap-1">
+                          <label className="inline-flex items-center gap-1 text-sm sm:text-base">
                             <input type="radio" name="tier" value="select3" checked={healthTier === 'select3'} onChange={() => setHealthTier('select3')} className="accent-yellow-600" />
                             Select 3
                           </label>
@@ -494,7 +494,7 @@ const FinalExpensePage: React.FC = () => {
                   {/* Right side - Quote display */}
                   <div className="flex flex-col items-center justify-center w-full lg:w-80 lg:flex-shrink-0">
                     <div
-                      className="bg-blue-600 text-white rounded-2xl px-8 py-10 shadow-xl text-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
+                      className="bg-blue-600 text-white rounded-2xl px-6 sm:px-8 py-8 sm:py-10 shadow-xl text-center w-full transition-transform duration-150 hover:scale-105 cursor-pointer"
                       onClick={handleSecureQuoteClick}
                       role="button"
                       tabIndex={0}
@@ -503,22 +503,22 @@ const FinalExpensePage: React.FC = () => {
                       {selectedState && burialType && quote ? (
                         <>
                           <div className="flex items-baseline justify-center gap-2 w-full">
-                            <span className="text-4xl font-bold">${quote}</span>
-                            <span className="text-lg font-medium">/month</span>
+                            <span className="text-3xl sm:text-4xl font-bold">${quote}</span>
+                            <span className="text-base sm:text-lg font-medium">/month</span>
                           </div>
-                          <span className="text-sm text-white font-medium mt-3 block">Click to Secure</span>
+                          <span className="text-xs sm:text-sm text-white font-medium mt-2 sm:mt-3 block">Click to Secure</span>
                         </>
                       ) : (
-                        <span className="text-xl font-semibold text-blue-100">Input info above to get your rate!</span>
+                        <span className="text-lg sm:text-xl font-semibold text-blue-100">Input info above to get your rate!</span>
                       )}
                     </div>
-                    <span className="text-xs text-gray-500 mt-3 text-center">* Final rates may vary based on official medical underwriting.</span>
+                    <span className="text-xs text-gray-500 mt-3 text-center px-2">* Final rates may vary based on official medical underwriting.</span>
                     
                     {/* Share Quote Button */}
                     {selectedState && burialType && quote && (
                       <button
                         type="button"
-                        className="mt-6 bg-blue-50 border border-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold text-base shadow-sm hover:bg-blue-100 transition w-full"
+                        className="mt-4 sm:mt-6 bg-blue-50 border border-gray-200 text-gray-800 px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base shadow-sm hover:bg-blue-100 transition w-full"
                         onClick={() => setShowShareModal(true)}
                       >
                         Send me my quote!
@@ -628,33 +628,78 @@ const FinalExpensePage: React.FC = () => {
       )}
       {/* Secure Quote Modal */}
       {showSecureQuoteModal && ReactDOM.createPortal(
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 px-2 sm:px-0">
-          <div
-            className="bg-white rounded-3xl shadow-2xl max-w-md w-full relative flex flex-col gap-6 border border-blue-100 items-center"
-            style={{ padding: '2rem 1rem', boxSizing: 'border-box' }}
-          >
-            <button className="absolute top-4 right-4 text-gray-400 hover:text-blue-700 text-2xl" onClick={() => setShowSecureQuoteModal(false)}>&times;</button>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-blue-800 text-center mb-2 mt-2">Secure Your Quote</h2>
-            <a
-              href="tel:5037645097"
-              className="font-extrabold text-center block hover:underline"
-              style={{
-                color: '#60a5fa',
-                fontSize: '2.5rem',
-                letterSpacing: '2px',
-                margin: '1.5rem 0 1rem 0',
-                lineHeight: 1.1,
-                wordBreak: 'keep-all',
-                textShadow: '0 2px 8px rgba(96,165,250,0.08)',
-                whiteSpace: 'nowrap',
-                maxWidth: '100%',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              503-764-5097
-            </a>
-            <span className="text-lg sm:text-xl font-normal text-gray-900 text-center">Call or Text Now!</span>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-2 sm:px-4">
+          <div className="bg-white rounded-2xl shadow-xl max-w-sm sm:max-w-lg w-full mx-2 sm:mx-4 relative max-h-[90vh] overflow-y-auto">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-t-2xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <h2 className="text-lg sm:text-xl font-bold">Thank You for Your Interest!</h2>
+                </div>
+                <button 
+                  className="text-white hover:text-gray-200 transition-colors duration-200 p-1" 
+                  onClick={() => setShowSecureQuoteModal(false)}
+                >
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="px-4 sm:px-6 py-4 sm:py-6">
+              <div className="text-gray-900 font-bold text-base sm:text-lg text-center mb-4 sm:mb-6">
+                Final step:
+              </div>
+
+              {/* Option 1: Call Directly */}
+              <a
+                href="tel:5037645097"
+                className="block w-full bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-3 px-3 sm:px-4 rounded-xl mb-3 transition-colors duration-200 flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base"
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                </svg>
+                <span className="text-center">
+                  <div className="font-semibold">Call Directly:</div>
+                  <div className="font-bold">1-800-Final-Expenses</div>
+                </span>
+              </a>
+
+              {/* "or" divider */}
+              <div className="text-center mb-3">
+                <span className="text-gray-500 font-medium text-sm">or</span>
+              </div>
+
+              {/* Option 2: Book Consultation */}
+              <a
+                href="https://calendly.com/mikealfieri/30min?back=1&month=2025-08"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-3 sm:px-4 rounded-xl mb-4 sm:mb-6 transition-colors duration-200 flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base"
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"/>
+                </svg>
+                <span className="text-center">
+                  <div className="font-semibold">Book Consultation Now</div>
+                </span>
+              </a>
+
+              {/* Close Button */}
+              <div className="flex justify-center">
+                <button
+                  onClick={() => setShowSecureQuoteModal(false)}
+                  className="w-1/2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-3 sm:px-4 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2 text-sm sm:text-base"
+                >
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  Close
+                </button>
+              </div>
+            </div>
           </div>
         </div>,
         document.body
